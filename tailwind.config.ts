@@ -54,16 +54,25 @@ export default {
 					foreground: 'hsl(var(--card-foreground))'
 				},
 				brand: {
-					50: '#e6f7fa',
-					100: '#cceff5',
-					200: '#99dfeb',
-					300: '#66cfe0',
-					400: '#33bfd6',
-					500: '#00afcc',
-					600: '#008ca3',
-					700: '#00697a',
-					800: '#004552',
-					900: '#002229',
+					50: '#EAF2F8',
+					100: '#D4E6F1',
+					200: '#A9CCE3',
+					300: '#7FB3D5',
+					400: '#5499C7',
+					500: '#2980B9',
+					600: '#2471A3',
+					700: '#1F618D',
+					800: '#1A5276',
+					900: '#154360',
+				},
+				sars: {
+					blue: "#003366",
+					lightblue: "#4C6A9C",
+					mediumblue: "#2D4E6D",
+					navy: "#1A5276",
+					skyblue: "#7FB3D5",
+					gray: "#F2F2F2",
+					darkgray: "#333333",
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
@@ -124,6 +133,9 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.3s ease-out',
 				'fade-out': 'fade-out 0.3s ease-out',
+			},
+			fontFamily: {
+				sans: ['Arial', 'Helvetica', 'sans-serif'],
 			}
 		}
 	},
