@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Layout } from "@/components/layout/Layout";
 import { PageHeader } from "@/components/common/PageHeader";
@@ -70,8 +71,8 @@ export default function AnalyticsPage() {
       />
       
       <div className="space-y-6">
-        <Card className="bg-white">
-          <CardHeader className="bg-[#4C6A9C] text-white">
+        <Card>
+          <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Filter className="h-5 w-5" />
               Report Filters
@@ -148,8 +149,8 @@ export default function AnalyticsPage() {
           </CardContent>
         </Card>
         
-        <Card className="bg-white">
-          <CardHeader className="bg-[#4C6A9C] text-white">
+        <Card>
+          <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <ChartLine className="h-5 w-5" />
               Visualization Options
@@ -180,7 +181,7 @@ export default function AnalyticsPage() {
                     <SelectValue placeholder="Select color scheme" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="default">SARS Default</SelectItem>
+                    <SelectItem value="default">Default</SelectItem>
                     <SelectItem value="blue">Blue Scale</SelectItem>
                     <SelectItem value="green">Green Scale</SelectItem>
                     <SelectItem value="contrast">High Contrast</SelectItem>
@@ -211,8 +212,8 @@ export default function AnalyticsPage() {
           </CardContent>
         </Card>
         
-        <Card className="bg-white">
-          <CardHeader className="bg-[#4C6A9C] text-white flex flex-row items-center justify-between">
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle className="flex items-center gap-2">
               {chartConfig.dataType === "bar" && <BarChart className="h-5 w-5" />}
               {chartConfig.dataType === "pie" && <ChartPie className="h-5 w-5" />}
@@ -223,8 +224,7 @@ export default function AnalyticsPage() {
             <div className="flex items-center gap-2">
               <Button 
                 variant="outline" 
-                size="sm" 
-                className="bg-white/10 hover:bg-white/20 text-white"
+                size="sm"
                 onClick={() => handleExport("pdf")}
               >
                 <FileText className="h-4 w-4 mr-2" />
@@ -232,8 +232,7 @@ export default function AnalyticsPage() {
               </Button>
               <Button 
                 variant="outline" 
-                size="sm" 
-                className="bg-white/10 hover:bg-white/20 text-white"
+                size="sm"
                 onClick={() => handleExport("excel")}
               >
                 <FileSpreadsheet className="h-4 w-4 mr-2" />
@@ -241,8 +240,7 @@ export default function AnalyticsPage() {
               </Button>
               <Button 
                 variant="outline" 
-                size="sm" 
-                className="bg-white/10 hover:bg-white/20 text-white"
+                size="sm"
                 onClick={() => handleExport("csv")}
               >
                 <Download className="h-4 w-4 mr-2" />

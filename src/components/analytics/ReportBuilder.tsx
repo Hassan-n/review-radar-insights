@@ -22,13 +22,13 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Info } from "lucide-react";
 
-// SARS color palette
+// Color schemes
 const COLOR_SCHEMES = {
-  default: ["#4C6A9C", "#2D4E6D", "#003366", "#1A5276", "#7FB3D5"],
-  blue: ["#1A5276", "#2874A6", "#3498DB", "#85C1E9", "#D6EAF8"],
-  green: ["#145A32", "#196F3D", "#1E8449", "#27AE60", "#58D68D"],
-  contrast: ["#F1C40F", "#3498DB", "#E74C3C", "#2ECC71", "#9B59B6"],
-  monochrome: ["#1F1F1F", "#383838", "#555555", "#777777", "#999999"]
+  default: ["#4361ee", "#3a0ca3", "#7209b7", "#f72585", "#4cc9f0"],
+  blue: ["#03045e", "#0077b6", "#00b4d8", "#90e0ef", "#caf0f8"],
+  green: ["#004b23", "#006400", "#007200", "#008000", "#38b000"],
+  contrast: ["#f94144", "#f3722c", "#f8961e", "#f9c74f", "#90be6d"],
+  monochrome: ["#0d1b2a", "#1b263b", "#415a77", "#778da9", "#e0e1dd"]
 };
 
 interface ReportBuilderProps {
