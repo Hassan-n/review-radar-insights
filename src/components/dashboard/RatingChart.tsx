@@ -13,6 +13,12 @@ export function RatingChart({ data, isLoading = false }: RatingChartProps) {
   // Custom colors for each rating
   const colors = ["#EF4444", "#F97316", "#F59E0B", "#34D399", "#10B981"];
 
+  // Function to get fill color based on rating
+  const getFillColor = (entry: any) => {
+    const rating = entry.rating;
+    return colors[rating - 1];
+  };
+
   return (
     <Card className="col-span-2">
       <CardHeader>
@@ -35,12 +41,13 @@ export function RatingChart({ data, isLoading = false }: RatingChartProps) {
               />
               <Bar 
                 dataKey="count" 
-                fill="#10B981"
                 radius={[4, 4, 0, 0]}
                 barSize={50}
                 name="count"
-                // Use different colors for each rating
-                fill={({rating}) => colors[rating - 1]}
+                fill="#10B981"
+                // Use the function to determine the fill color
+                fillOpacity={1}
+                stroke="none"
               />
             </BarChart>
           </ResponsiveContainer>

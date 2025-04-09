@@ -3,7 +3,7 @@ import { Layout } from "@/components/layout/Layout";
 import { PageHeader } from "@/components/common/PageHeader";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { ChartSquare, Info } from "lucide-react";
+import { BarChart, Info } from "lucide-react";
 
 export default function AnalyticsPage() {
   return (
@@ -24,7 +24,7 @@ export default function AnalyticsPage() {
         <Card className="bg-muted/40">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <ChartSquare className="h-5 w-5" />
+              <BarChart className="h-5 w-5" />
               Regional Comparison
             </CardTitle>
           </CardHeader>
@@ -36,7 +36,7 @@ export default function AnalyticsPage() {
         <Card className="bg-muted/40">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <ChartSquare className="h-5 w-5" />
+              <BarChart className="h-5 w-5" />
               Performance Metrics
             </CardTitle>
           </CardHeader>
@@ -48,7 +48,7 @@ export default function AnalyticsPage() {
         <Card className="bg-muted/40 md:col-span-2">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <ChartSquare className="h-5 w-5" />
+              <BarChart className="h-5 w-5" />
               Sentiment Analysis Heat Map
             </CardTitle>
           </CardHeader>
