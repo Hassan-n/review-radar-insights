@@ -18,9 +18,17 @@ import { Skeleton } from "@/components/ui/skeleton";
 interface TrendChartProps {
   data: MonthlyTrend[];
   isLoading?: boolean;
+  onDrilldown?: (month: string) => void;
 }
 
-export function TrendChart({ data, isLoading = false }: TrendChartProps) {
+export function TrendChart({ data, isLoading = false, onDrilldown }: TrendChartProps) {
+  // Function to handle point click for drilldown
+  const handlePointClick = (data: any) => {
+    if (onDrilldown && data.activePayload && data.activePayload.length > 0) {
+      onDrilldown(data.activePayload[0].payload.month);
+    }
+  };
+
   return (
     <Card className="col-span-3">
       <CardHeader>
@@ -31,7 +39,11 @@ export function TrendChart({ data, isLoading = false }: TrendChartProps) {
           <Skeleton className="h-[300px] w-full" />
         ) : (
           <ResponsiveContainer width="100%" height={300}>
-            <ComposedChart data={data}>
+            <ComposedChart 
+              data={data}
+              onClick={onDrilldown ? handlePointClick : undefined}
+              cursor={onDrilldown ? "pointer" : "default"}
+            >
               <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
               <XAxis 
                 dataKey="month" 

@@ -7,9 +7,10 @@ import { Skeleton } from "@/components/ui/skeleton";
 interface SentimentChartProps {
   data: SentimentDistribution[];
   isLoading?: boolean;
+  onDrilldown?: (sentiment: string) => void;
 }
 
-export function SentimentChart({ data, isLoading = false }: SentimentChartProps) {
+export function SentimentChart({ data, isLoading = false, onDrilldown }: SentimentChartProps) {
   // Custom colors for sentiment types
   const COLORS = {
     positive: "#10B981", // green
@@ -22,6 +23,13 @@ export function SentimentChart({ data, isLoading = false }: SentimentChartProps)
     positive: "Positive",
     neutral: "Neutral",
     negative: "Negative",
+  };
+
+  // Function to handle pie segment click for drilldown
+  const handlePieClick = (data: any) => {
+    if (onDrilldown) {
+      onDrilldown(data.sentiment);
+    }
   };
 
   return (
@@ -47,6 +55,8 @@ export function SentimentChart({ data, isLoading = false }: SentimentChartProps)
                 label={({ sentiment, percentage }) => 
                   `${LABELS[sentiment]}: ${percentage.toFixed(1)}%`
                 }
+                onClick={handlePieClick}
+                cursor={onDrilldown ? "pointer" : "default"}
               >
                 {data.map((entry, index) => (
                   <Cell 

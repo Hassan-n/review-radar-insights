@@ -3,20 +3,25 @@ import { RatingDistribution } from "@/types";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { ChevronLeft } from "lucide-react";
 
 interface RatingChartProps {
   data: RatingDistribution[];
   isLoading?: boolean;
+  onDrilldown?: (rating: number) => void;
 }
 
-export function RatingChart({ data, isLoading = false }: RatingChartProps) {
+export function RatingChart({ data, isLoading = false, onDrilldown }: RatingChartProps) {
   // Custom colors for each rating
   const colors = ["#EF4444", "#F97316", "#F59E0B", "#34D399", "#10B981"];
 
-  // Function to get fill color based on rating
-  const getFillColor = (entry: any) => {
-    const rating = entry.rating;
-    return colors[rating - 1];
+  // Function to handle bar click for drilldown
+  const handleBarClick = (data: any) => {
+    if (onDrilldown) {
+      onDrilldown(data.rating);
+    }
   };
 
   return (
@@ -45,9 +50,10 @@ export function RatingChart({ data, isLoading = false }: RatingChartProps) {
                 barSize={50}
                 name="count"
                 fill="#10B981"
-                // Use the function to determine the fill color
                 fillOpacity={1}
                 stroke="none"
+                onClick={handleBarClick}
+                cursor={onDrilldown ? "pointer" : "default"}
               />
             </BarChart>
           </ResponsiveContainer>
