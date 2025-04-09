@@ -42,7 +42,7 @@ export function TrendChart({ data, isLoading = false, onDrilldown }: TrendChartP
             <ComposedChart 
               data={data}
               onClick={onDrilldown ? handlePointClick : undefined}
-              cursor={onDrilldown ? "pointer" : "default"}
+              // cursor property removed as it's not valid on ComposedChart
             >
               <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
               <XAxis 

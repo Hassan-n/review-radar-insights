@@ -46,7 +46,7 @@ export default function Dashboard() {
       ...(drilldownMode === "sentiment" && { sentiment: drilldownValue as string }),
       ...(drilldownMode === "month" && { month: drilldownValue as string }),
     } : undefined,
-    drilldownMode !== null // Only fetch when in drilldown mode
+    { enabled: drilldownMode !== null } // Fix: Use the React Query v5 options object format
   );
   
   // Handle drilldown on rating chart
