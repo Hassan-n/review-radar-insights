@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Layout } from "@/components/layout/Layout";
 import { PageHeader } from "@/components/common/PageHeader";
@@ -35,6 +36,7 @@ import { Separator } from "@/components/ui/separator";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { TimeFilter } from "@/components/dashboard/TimeFilter";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export default function ReviewsPage() {
   // Filter state
@@ -126,132 +128,134 @@ export default function ReviewsPage() {
                 )}
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="w-[300px] sm:w-[400px]">
-              <SheetHeader>
+            <SheetContent side="left" className="w-[300px] sm:w-[400px] p-0">
+              <SheetHeader className="p-6 pb-2">
                 <SheetTitle>Filter Reviews</SheetTitle>
                 <SheetDescription>
                   Apply filters to narrow down the reviews
                 </SheetDescription>
               </SheetHeader>
               
-              <div className="py-6 space-y-6">
-                <div className="space-y-2">
-                  <Label>Time Period</Label>
-                  <TimeFilter 
-                    selected={timePeriod} 
-                    onChange={(period) => {
-                      setTimePeriod(period);
-                      setPage(1);
-                    }}
-                  />
-                </div>
-                
-                <Separator />
-                
-                <div className="space-y-2">
-                  <Label>Region</Label>
-                  {regions && (
-                    <RegionFilter
-                      regions={regions}
-                      selectedRegionId={selectedRegionId}
-                      onChange={(regionId) => {
-                        setSelectedRegionId(regionId);
-                        setSelectedBranchId(undefined); // Reset branch when region changes
-                        setPage(1);
-                      }}
-                      isLoading={regionsLoading}
-                    />
-                  )}
-                </div>
-                
-                <div className="space-y-2">
-                  <Label>Branch</Label>
-                  {filteredBranches && (
-                    <BranchFilter
-                      branches={filteredBranches}
-                      selectedBranchId={selectedBranchId}
-                      onChange={(branchId) => {
-                        setSelectedBranchId(branchId);
-                        setPage(1);
-                      }}
-                      isLoading={branchesLoading}
-                      disabled={!filteredBranches.length}
-                    />
-                  )}
-                </div>
-                
-                <Separator />
-                
-                <div className="space-y-3">
-                  <Label>Rating</Label>
-                  <div className="flex flex-wrap gap-2">
-                    {[1, 2, 3, 4, 5].map((rating) => (
-                      <Button
-                        key={rating}
-                        variant={selectedRatings.includes(rating) ? "default" : "outline"}
-                        size="sm"
-                        onClick={() => handleRatingToggle(rating)}
-                      >
-                        {rating} <Star className="h-3 w-3 ml-1" />
-                      </Button>
-                    ))}
-                  </div>
-                </div>
-                
-                <div className="space-y-3">
-                  <Label>Sentiment</Label>
+              <ScrollArea className="h-[calc(100vh-80px)]">
+                <div className="p-6 pt-2 space-y-6">
                   <div className="space-y-2">
-                    <div className="flex items-center space-x-2">
-                      <Checkbox 
-                        id="sentiment-positive" 
-                        checked={selectedSentiments.includes("positive")}
-                        onCheckedChange={() => handleSentimentToggle("positive")}
+                    <Label>Time Period</Label>
+                    <TimeFilter 
+                      selected={timePeriod} 
+                      onChange={(period) => {
+                        setTimePeriod(period);
+                        setPage(1);
+                      }}
+                    />
+                  </div>
+                  
+                  <Separator />
+                  
+                  <div className="space-y-2">
+                    <Label>Region</Label>
+                    {regions && (
+                      <RegionFilter
+                        regions={regions}
+                        selectedRegionId={selectedRegionId}
+                        onChange={(regionId) => {
+                          setSelectedRegionId(regionId);
+                          setSelectedBranchId(undefined); // Reset branch when region changes
+                          setPage(1);
+                        }}
+                        isLoading={regionsLoading}
                       />
-                      <label 
-                        htmlFor="sentiment-positive"
-                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                      >
-                        Positive
-                      </label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <Checkbox 
-                        id="sentiment-neutral" 
-                        checked={selectedSentiments.includes("neutral")}
-                        onCheckedChange={() => handleSentimentToggle("neutral")}
+                    )}
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <Label>Branch</Label>
+                    {filteredBranches && (
+                      <BranchFilter
+                        branches={filteredBranches}
+                        selectedBranchId={selectedBranchId}
+                        onChange={(branchId) => {
+                          setSelectedBranchId(branchId);
+                          setPage(1);
+                        }}
+                        isLoading={branchesLoading}
+                        disabled={!filteredBranches.length}
                       />
-                      <label 
-                        htmlFor="sentiment-neutral"
-                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                      >
-                        Neutral
-                      </label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <Checkbox 
-                        id="sentiment-negative" 
-                        checked={selectedSentiments.includes("negative")}
-                        onCheckedChange={() => handleSentimentToggle("negative")}
-                      />
-                      <label 
-                        htmlFor="sentiment-negative"
-                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                      >
-                        Negative
-                      </label>
+                    )}
+                  </div>
+                  
+                  <Separator />
+                  
+                  <div className="space-y-3">
+                    <Label>Rating</Label>
+                    <div className="flex flex-wrap gap-2">
+                      {[1, 2, 3, 4, 5].map((rating) => (
+                        <Button
+                          key={rating}
+                          variant={selectedRatings.includes(rating) ? "default" : "outline"}
+                          size="sm"
+                          onClick={() => handleRatingToggle(rating)}
+                        >
+                          {rating} <Star className="h-3 w-3 ml-1" />
+                        </Button>
+                      ))}
                     </div>
                   </div>
+                  
+                  <div className="space-y-3">
+                    <Label>Sentiment</Label>
+                    <div className="space-y-2">
+                      <div className="flex items-center space-x-2">
+                        <Checkbox 
+                          id="sentiment-positive" 
+                          checked={selectedSentiments.includes("positive")}
+                          onCheckedChange={() => handleSentimentToggle("positive")}
+                        />
+                        <label 
+                          htmlFor="sentiment-positive"
+                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                        >
+                          Positive
+                        </label>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <Checkbox 
+                          id="sentiment-neutral" 
+                          checked={selectedSentiments.includes("neutral")}
+                          onCheckedChange={() => handleSentimentToggle("neutral")}
+                        />
+                        <label 
+                          htmlFor="sentiment-neutral"
+                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                        >
+                          Neutral
+                        </label>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <Checkbox 
+                          id="sentiment-negative" 
+                          checked={selectedSentiments.includes("negative")}
+                          onCheckedChange={() => handleSentimentToggle("negative")}
+                        />
+                        <label 
+                          htmlFor="sentiment-negative"
+                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                        >
+                          Negative
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <Button 
+                    variant="outline" 
+                    className="w-full" 
+                    onClick={clearFilters}
+                    disabled={countActiveFilters() === 0}
+                  >
+                    Clear All Filters
+                  </Button>
                 </div>
-                
-                <Button 
-                  variant="outline" 
-                  className="w-full" 
-                  onClick={clearFilters}
-                  disabled={countActiveFilters() === 0}
-                >
-                  Clear All Filters
-                </Button>
-              </div>
+              </ScrollArea>
             </SheetContent>
           </Sheet>
           

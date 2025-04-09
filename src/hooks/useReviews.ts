@@ -10,11 +10,15 @@ export function useReviews(page: number, pageSize: number, filters?: FilterOptio
   });
 }
 
-export function useBranchReviews(branchId: string) {
+export function useBranchReviews(
+  branchId: string, 
+  filters?: FilterOptions,
+  options?: { enabled?: boolean }
+) {
   return useQuery({
-    queryKey: ["branchReviews", branchId],
-    queryFn: () => getReviewsByBranch(branchId),
-    enabled: !!branchId,
+    queryKey: ["branchReviews", branchId, filters],
+    queryFn: () => getReviewsByBranch(branchId, filters),
+    ...options,
   });
 }
 
