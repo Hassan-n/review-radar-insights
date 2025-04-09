@@ -25,15 +25,15 @@ export function BranchFilter({
 }: BranchFilterProps) {
   return (
     <Select
-      value={selectedBranchId || ""}
-      onValueChange={(value) => onChange(value === "" ? undefined : value)}
+      value={selectedBranchId || "all"}
+      onValueChange={(value) => onChange(value === "all" ? undefined : value)}
       disabled={isLoading || disabled}
     >
       <SelectTrigger className="w-full">
         <SelectValue placeholder="All Branches" />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="">All Branches</SelectItem>
+        <SelectItem value="all">All Branches</SelectItem>
         {branches.map((branch) => (
           <SelectItem key={branch.id} value={branch.id}>
             {branch.name}

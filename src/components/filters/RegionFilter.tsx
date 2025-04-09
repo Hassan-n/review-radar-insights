@@ -23,15 +23,15 @@ export function RegionFilter({
 }: RegionFilterProps) {
   return (
     <Select
-      value={selectedRegionId || ""}
-      onValueChange={(value) => onChange(value === "" ? undefined : value)}
+      value={selectedRegionId || "all"}
+      onValueChange={(value) => onChange(value === "all" ? undefined : value)}
       disabled={isLoading}
     >
       <SelectTrigger className="w-full">
         <SelectValue placeholder="All Regions" />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="">All Regions</SelectItem>
+        <SelectItem value="all">All Regions</SelectItem>
         {regions.map((region) => (
           <SelectItem key={region.id} value={region.id}>
             {region.name}
