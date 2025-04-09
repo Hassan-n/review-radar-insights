@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Layout } from "@/components/layout/Layout";
 import { PageHeader } from "@/components/common/PageHeader";
@@ -12,7 +11,7 @@ import {
   ChartLine, 
   Table as TableIcon,
   Filter,
-  SortAscending
+  ArrowUpDown
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -22,7 +21,7 @@ import { Input } from "@/components/ui/input";
 import { RegionFilter } from "@/components/filters/RegionFilter";
 import { BranchFilter } from "@/components/filters/BranchFilter";
 import { useRegions } from "@/hooks/useRegions";
-import { useBranches } from "@/hooks/useBranches";
+import { useRegionBranches } from "@/hooks/useBranches";
 import { ReportBuilder } from "@/components/analytics/ReportBuilder";
 import { ChartContainer } from "@/components/ui/chart";
 
@@ -40,14 +39,10 @@ export default function AnalyticsPage() {
   const [activeTab, setActiveTab] = useState("chart");
   
   const { data: regions = [], isLoading: isLoadingRegions } = useRegions();
-  const { data: branches = [], isLoading: isLoadingBranches } = useBranches(selectedRegionId);
+  const { data: branches = [], isLoading: isLoadingBranches } = useRegionBranches(selectedRegionId);
 
-  // Function to handle export
   const handleExport = (format: "pdf" | "excel" | "csv") => {
     console.log(`Exporting in ${format} format`);
-    // Implementation would connect to actual export functionality
-    
-    // For demo purposes, show an alert
     alert(`Report would now be exported as ${format.toUpperCase()}`);
   };
 
@@ -75,7 +70,6 @@ export default function AnalyticsPage() {
       />
       
       <div className="space-y-6">
-        {/* Filters Card */}
         <Card className="bg-white">
           <CardHeader className="bg-[#4C6A9C] text-white">
             <CardTitle className="flex items-center gap-2">
@@ -154,7 +148,6 @@ export default function AnalyticsPage() {
           </CardContent>
         </Card>
         
-        {/* Visualization Options Card */}
         <Card className="bg-white">
           <CardHeader className="bg-[#4C6A9C] text-white">
             <CardTitle className="flex items-center gap-2">
@@ -210,7 +203,7 @@ export default function AnalyticsPage() {
                     </SelectContent>
                   </Select>
                   <Button variant="outline" size="icon" className="h-10 w-10">
-                    <SortAscending className="h-4 w-4" />
+                    <ArrowUpDown className="h-4 w-4" />
                   </Button>
                 </div>
               </div>
@@ -218,7 +211,6 @@ export default function AnalyticsPage() {
           </CardContent>
         </Card>
         
-        {/* Results Card */}
         <Card className="bg-white">
           <CardHeader className="bg-[#4C6A9C] text-white flex flex-row items-center justify-between">
             <CardTitle className="flex items-center gap-2">
