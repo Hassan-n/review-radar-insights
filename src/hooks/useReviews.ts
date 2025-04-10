@@ -18,7 +18,7 @@ export function useBranchReviews(
   return useQuery({
     queryKey: ["branchReviews", branchId, filters],
     queryFn: () => getReviewsByBranch(branchId, filters),
-    ...options,
+    enabled: options?.enabled,
   });
 }
 
